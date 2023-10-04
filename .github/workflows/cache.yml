@@ -12,3 +12,14 @@ jobs:
 
       - name: Installing PIP
         run: pip install -r requirements.txt
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Download the repo
+
+      - name: Installing PIP
+        run: pip install -r requirements.txt
+

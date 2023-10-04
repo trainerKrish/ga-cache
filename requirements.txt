@@ -1,0 +1,8 @@
+django
+flask
+keras
+scipy
+sympy
+numpy
+pandas
+tensorflow
