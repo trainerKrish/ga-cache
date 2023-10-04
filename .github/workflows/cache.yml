@@ -13,7 +13,7 @@ jobs:
       - name: Caching the modules
         uses: actions/cache@v3
         with: 
-          path: ~.cache/pip
+          path: ~/.cache/pip
           key: pip-cache
 
       - name: Installing PIP
@@ -28,7 +28,7 @@ jobs:
       - name: Caching the modules
         uses: actions/cache@v3
         with: 
-          path: ~.cache/pip
+          path: ~/.cache/pip
           key: pip-cache
       - name: Installing PIP
         run: pip install -r requirements.txt
