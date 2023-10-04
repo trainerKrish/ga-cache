@@ -1,0 +1,14 @@
+name: "Testing the Cache behaviour"
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Download the repo
+
+      - name: Installing PIP
+        run: pip install -r requirements.txt
