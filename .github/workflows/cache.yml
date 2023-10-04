@@ -10,6 +10,12 @@ jobs:
       - uses: actions/checkout@v4
         name: Download the repo
 
+      - name: Caching the modules
+        uses: actions/cache@v3
+        with: 
+          path: ~.cache/pip
+          key: pip-cache
+
       - name: Installing PIP
         run: pip install -r requirements.txt
 
@@ -19,7 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Download the repo
-
+      - name: Caching the modules
+        uses: actions/cache@v3
+        with: 
+          path: ~.cache/pip
+          key: pip-cache
       - name: Installing PIP
         run: pip install -r requirements.txt
 
