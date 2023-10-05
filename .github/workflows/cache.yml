@@ -13,11 +13,14 @@ jobs:
       - name: Caching the modules
         uses: actions/cache@v3
         with: 
-          path: ~/.cache/pip
+          path: venv
           key: pip-cache-${{ hashFiles('requirements.txt')}}
 
       - name: Installing PIP
-        run: pip install -r requirements.txt
+        run: |
+          python -m virtualenv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
 
   job2:
     needs: job1
@@ -28,8 +31,11 @@ jobs:
       - name: Caching the modules
         uses: actions/cache@v3
         with: 
-          path: ~/.cache/pip
-          key: pip-cache-${{ hashFiles('requirements.txt')}}
+          path: venv1
+          key: pip1-cache-${{ hashFiles('requirements.txt')}}
       - name: Installing PIP
-        run: pip install -r requirements.txt
+        run: |
+          python -m venv venv1
+          source venv1/bin/activate
+          pip install -r requirements.txt
 
