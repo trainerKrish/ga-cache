@@ -17,13 +17,17 @@ jobs:
           key: pip-cache-${{ hashFiles('requirements.txt')}}
 
       - name: Installing PIP
+        continue-on-error: true
         run: |
           python -m virtualenv venv
           source venv/bin/activate
           pip install -r requirements.txt
+        
+      - name: Testing
+        run: echo "hello"
 
   job2:
-    needs: job1
+    # needs: job1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
