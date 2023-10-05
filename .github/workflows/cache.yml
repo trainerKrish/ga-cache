@@ -11,20 +11,23 @@ jobs:
         name: Download the repo
 
       - name: Caching the modules
+        id: modules
         uses: actions/cache@v3
         with: 
           path: venv
-          key: pip-cache-${{ hashFiles('requirements.txt')}}
+          key: pip1-cache-${{ hashFiles('requirements.txt')}}
 
       - name: Installing PIP
-        continue-on-error: true
+        if: steps.modules.outputs.cache-hit != 'true'
         run: |
-          python -m virtualenv venv
+          python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
         
-      - name: Testing
-        run: echo "hello"
+      - name: Print modules
+        run: |
+          source venv/bin/activate
+          pip freeze
 
   job2:
     # needs: job1
@@ -32,14 +35,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Download the repo
+
       - name: Caching the modules
+        id: modules
         uses: actions/cache@v3
         with: 
-          path: venv1
+          path: venv
           key: pip1-cache-${{ hashFiles('requirements.txt')}}
+
       - name: Installing PIP
+        if: steps.modules.outputs.cache-hit != 'true'
         run: |
-          python -m venv venv1
-          source venv1/bin/activate
+          python -m venv venv
+          source venv/bin/activate
           pip install -r requirements.txt
 
