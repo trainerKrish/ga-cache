@@ -11,6 +11,6 @@ jobs:
         with:
           python-version: '3.9' 
       - run: |
-            print(5)
-            print("hello")
+            import sys
+            print(sys.platform)
         shell: python
