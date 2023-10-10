@@ -1,0 +1,10 @@
+name: "Testing the Py Version"
+on: push
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Download the repo
+      - run: python --version
